@@ -1,0 +1,20 @@
+﻿@page "/"
+@inject BlazorApp.Services.OpenAIService OpenAIService
+
+<h3>OpenAI Integration</h3>
+
+<textarea @bind="prompt"></textarea>
+<button @onclick="GetCompletion">Get Completion</button>
+
+<p>@result</p>
+
+@code {
+    private string prompt = "";
+    private string result = "";
+
+    private async Task GetCompletion()
+    {
+        result = await OpenAIService.GetCompletionAsync(prompt);
+      
+    }
+}
